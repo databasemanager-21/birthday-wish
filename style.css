@@ -13,28 +13,56 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 h1, h2 {
     color: white;
+    margin: 8px 0;
+}
+
+h1 {
+    font-size: clamp(1.6rem, 6vw, 2.8rem);
+}
+
+h2 {
+    font-size: clamp(1.1rem, 4vw, 1.8rem);
 }
 
 .heart {
-    font-size: 220px;
+    font-size: clamp(100px, 30vw, 220px);
     cursor: pointer;
+    line-height: 1;
+    transition: transform 0.2s ease;
+}
+
+.heart:active {
+    transform: scale(0.9);
+}
+
+/* WISH MESSAGE */
+.message {
+    display: none;
+    color: white;
+    font-size: clamp(0.95rem, 3.5vw, 1.2rem);
+    margin-top: 16px;
+    padding: 0 16px;
+    line-height: 1.7;
 }
 
 /* ALBUM */
 .album {
     display: none;
-    padding: 40px;
+    padding: clamp(20px, 5vw, 40px);
+    box-sizing: border-box;
 }
 
 /* PHOTO STACK */
 .photo-stack {
     position: relative;
-    width: 260px;
-    height: 360px;
+    width: clamp(200px, 60vw, 260px);
+    height: clamp(280px, 80vw, 360px);
     margin: 40px auto;
 }
 
@@ -45,6 +73,77 @@ h1, h2 {
     height: 100%;
     object-fit: cover;
     border-radius: 16px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
     transition: transform 0.8s ease;
+    cursor: pointer;
+}
+
+/* IMAGE POPUP */
+.popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.popup.active {
+    display: flex;
+}
+
+.popup span {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    line-height: 1;
+    padding: 4px 10px;
+}
+
+.popup img {
+    max-width: 100%;
+    max-height: 88vh;
+    border-radius: 12px;
+    object-fit: contain;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+/* ─── TABLET (600px–900px) ─── */
+@media (min-width: 600px) {
+    .photo-stack {
+        width: 240px;
+        height: 330px;
+    }
+}
+
+/* ─── DESKTOP (900px+) ─── */
+@media (min-width: 900px) {
+    .photo-stack {
+        width: 260px;
+        height: 360px;
+    }
+
+    .heart:hover {
+        transform: scale(1.08);
+    }
+}
+
+/* ─── SHORT SCREENS (landscape phones) ─── */
+@media (max-height: 500px) {
+    .intro {
+        height: auto;
+        min-height: 100vh;
+        padding: 30px 20px;
+        gap: 8px;
+    }
+
+    .heart {
+        font-size: 80px;
+    }
 }
